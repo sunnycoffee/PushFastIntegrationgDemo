@@ -4,12 +4,26 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId "com.umeng.message.demo"
-        minSdkVersion 26
+        applicationId "com.qysd.revup.upemc"
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        manifestPlaceholders = [
+                UMENG_APPKEY   : "5f0a9edf9d08ed086260127d",
+                UMENG_APPSECRET: "419018244b4a4860625c4b534aa6916b",
+
+                XIAOMI_APPKEY  : "\\5581849077668",
+                XIAOMI_APPID   : "\\2882303761518490668",
+                HUAWEI_APPID   : "",
+                MEIZU_APPID    : "",
+                MEIZU_APPKEY   : "",
+                OPPO_APPKEY    : "",
+                OPPO_APPSECRET : "",
+                VIVO_APPKEY    : "",
+                VIVO_APPID     : ""
+        ]
     }
     buildTypes {
         release {
@@ -17,10 +31,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    sourceSets {
-        main {
-            jniLibs.srcDirs = ['libs']
-        }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
     }
 }
 
@@ -28,42 +41,5 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-
-    implementation 'com.umeng.umsdk:huawei-basetb:2.6.3.306'
-    implementation 'com.umeng.umsdk:huawei-pushtb:2.6.3.306'
-    implementation 'com.umeng.umsdk:huawei-umengaccs:1.2.4'
-
-    implementation 'com.umeng.umsdk:meizu-push:3.8.7'
-    implementation 'com.umeng.umsdk:meizu-umengaccs:1.1.1'
-
-    implementation 'com.umeng.umsdk:oppo-push:2.0.2'
-    implementation 'com.umeng.umsdk:oppo-umengaccs:1.0.6'
-
-    implementation 'com.umeng.umsdk:vivo-push:2.3.5'
-    implementation 'com.umeng.umsdk:vivo-umengaccs:1.1.0'
-
-    implementation 'com.umeng.umsdk:xiaomi-push:3.7.0'
-    implementation 'com.umeng.umsdk:xiaomi-umengaccs:1.1.4'
-
-    //基础组件库依赖(必须)
-    implementation 'com.umeng.umsdk:common:9.1.0'
-    implementation 'com.umeng.umsdk:utdid:1.5.2'
-
-    //友盟push相关依赖(必须)
-    implementation 'com.umeng.umsdk:push:6.1.0'
-
-    implementation 'com.umeng.umsdk:alicloud-httpdns:1.2.5'
-    implementation 'com.umeng.umsdk:alicloud-utils:1.1.5'
-    implementation 'com.umeng.umsdk:alicloud_beacon:1.0.1'
-
-    implementation 'com.umeng.umsdk:agoo-accs:3.3.8.8-open-fix2'
-    implementation 'com.umeng.umsdk:agoo_networksdk:3.5.5'
-    implementation 'com.umeng.umsdk:agoo_tlog:3.0.0.17'
-    implementation 'com.umeng.umsdk:agoo_tnet4android:3.1.14.9'
-
-    implementation  'com.umeng.umsdk:asms:1.1.3'
-    implementation 'com.umeng.umsdk:crash:0.0.4'
+    implementation project(path: ':push')
 }
